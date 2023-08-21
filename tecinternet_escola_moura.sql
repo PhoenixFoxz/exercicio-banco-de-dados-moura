@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21/08/2023 às 14:15
+-- Tempo de geração: 21/08/2023 às 15:53
 -- Versão do servidor: 10.4.28-MariaDB
 -- Versão do PHP: 8.2.4
 
@@ -31,10 +31,26 @@ CREATE TABLE `alunos` (
   `id` smallint(6) NOT NULL,
   `nome` varchar(50) NOT NULL,
   `nascimento` date NOT NULL,
-  `nota1` decimal(4,2) NOT NULL,
-  `nota2` decimal(4,2) NOT NULL,
+  `nota1` decimal(4,2) DEFAULT NULL,
+  `nota2` decimal(4,2) DEFAULT NULL,
   `curso_id` smallint(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `alunos`
+--
+
+INSERT INTO `alunos` (`id`, `nome`, `nascimento`, `nota1`, `nota2`, `curso_id`) VALUES
+(1, 'Mocotó', '2004-06-18', 9.00, 8.00, 2),
+(2, 'Eliel', '1991-02-25', 10.00, 10.00, 4),
+(3, 'Phelipe', '2003-01-01', 4.00, 6.00, 5),
+(4, 'Valeska', '2002-02-02', 9.00, 8.00, 2),
+(5, 'Bueno', '2010-03-03', 2.00, 3.00, 5),
+(6, 'Moura', '2004-04-04', 7.00, 10.00, 3),
+(7, 'Barbosa', '2004-04-04', 7.00, 10.00, 3),
+(8, 'Leandro', '1932-05-05', 6.00, 9.00, 4),
+(9, 'Jhon', '2004-06-06', 8.00, 10.00, 1),
+(10, 'Vitor', '2004-07-07', 4.00, 9.00, 1);
 
 -- --------------------------------------------------------
 
@@ -49,6 +65,17 @@ CREATE TABLE `cursos` (
   `professor_id` smallint(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `cursos`
+--
+
+INSERT INTO `cursos` (`id`, `titulo`, `cargaHoraria`, `professor_id`) VALUES
+(1, 'Front-End', 80, NULL),
+(2, 'Back-End', 80, NULL),
+(3, 'UX/UI Design', 30, NULL),
+(4, 'Figma', 10, NULL),
+(5, 'Redes de Computadores', 100, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -61,6 +88,17 @@ CREATE TABLE `professores` (
   `atuacao` enum('design','desenvolvimento','infra') NOT NULL,
   `curso_id` smallint(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `professores`
+--
+
+INSERT INTO `professores` (`id`, `nome`, `atuacao`, `curso_id`) VALUES
+(1, 'Jon Oliva', 'infra', NULL),
+(2, 'Lemmy Kilmister', 'design', NULL),
+(3, 'Neil Peart', 'design', NULL),
+(4, 'Ozzy Osbourne', 'desenvolvimento', NULL),
+(5, 'David Gilmour', 'desenvolvimento', NULL);
 
 --
 -- Índices para tabelas despejadas
@@ -95,13 +133,19 @@ ALTER TABLE `professores`
 -- AUTO_INCREMENT de tabela `alunos`
 --
 ALTER TABLE `alunos`
-  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de tabela `cursos`
+--
+ALTER TABLE `cursos`
+  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `professores`
 --
 ALTER TABLE `professores`
-  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restrições para tabelas despejadas
